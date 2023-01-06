@@ -8,6 +8,9 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import Schedule from './components/Schedule';
+import Reports from './components/Reports';
+import Requests from './components/Requests';
 
 function App() {  
   const [mode, setMode] = useState("light");
@@ -32,10 +35,11 @@ function App() {
       <Navbar title="TextUtils" about="About" mode={mode} toggleMode={toggleMode}/>
       <div className='container my-3'>
         <Routes>
-          <Route exact path="/about" element={<About />}>
-          </Route>
-          <Route exact path="/" element={<TextForm heading="Enter the Text to Analyse Below" text={text}/>}>
-          </Route>
+          <Route exact path="/events" element={<About />}></Route>
+          <Route exact path="/Schedule" element={<Schedule/>}></Route>
+          <Route exact path="/Reports" element={<Reports/>}></Route>
+          <Route exact path="/Requests" element={<Requests/>}></Route>
+          <Route exact path="/" element={<TextForm heading="Enter the Text to Analyse Below" text={text}/>}></Route>
         </Routes>
       </div>
     </Router>
