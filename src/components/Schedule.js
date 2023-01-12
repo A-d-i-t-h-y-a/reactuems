@@ -1,29 +1,12 @@
 import React from "react";
+// import { button } from 'react-router-dom';
 
-const Schedule = () => {
-    let nextBtn = document.querySelectorAll(".btn-next");
-    let prevBtn = document.querySelectorAll(".btn-prev");
-    let formStep = document.querySelectorAll(".step");
+export default function Schedule() {
+    // let nextBtn = document.querySelectorAll(".btn-next");
+    // let prevBtn = document.querySelectorAll(".btn-prev");
+    let formStep = document.getElementsByClassName("step");
     // let Bookbtn = document.getElementById("Bookbtn");
     let btn_link = document.getElementsByClassName("btn-link");
-
-    // let temp = 0;
-
-    nextBtn.forEach(element => {
-        // console.log(element)
-        element.addEventListener("click", () => {
-            // temp++;
-            nextstep();
-        })
-    });
-
-    prevBtn.forEach(element => {
-        // console.log(element)
-        element.addEventListener("click", () => {
-            // temp--;
-            prevstep();
-        })
-    });
 
     const nextstep = () => {
         // formStep.forEach((formstep)=>{
@@ -63,7 +46,7 @@ const Schedule = () => {
         btn_link[a].classList.add("navact");
     }
 
-    const leftnav = (e, element) => {
+    const leftnav = (e) => {
         for (let i of formStep) {
             if (i.id === e && i.classList.contains("act")) {
                 break;
@@ -75,6 +58,7 @@ const Schedule = () => {
                 i.classList.remove("act");
             }
         }
+        let element = document.getElementsByClassName(e)[0];
         for (let i of btn_link) {
             if (i === element && element.classList.contains("navact")) {
                 break;
@@ -106,20 +90,20 @@ const Schedule = () => {
                 <div className="my-sm-5 ms-lg-5 shadow bg-body rounded py-3">
                     <div className="d-flex flex-row flex-sm-column justify-content-evenly mx-lg-5 h-100">
                         <button
-                            className="btn btn-link text-decoration-none text-black navact"
-                            onClick={()=>leftnav('book', this)}
+                            className="btn btn-link text-decoration-none text-black navact book"
+                            onClick={()=>leftnav('book')}
                         >
                             Book
                         </button>
                         <button
-                            className="btn btn-link text-decoration-none text-black"
-                            onClick={()=>leftnav('refreshment', this)}
+                            className="btn btn-link text-decoration-none text-black refreshment"
+                            onClick={()=>leftnav('refreshment')}
                         >
                             Refreshments
                         </button>
                         <button
-                            className="btn btn-link text-decoration-none text-black"
-                            onClick={()=>leftnav('request', this)}
+                            className="btn btn-link text-decoration-none text-black request"
+                            onClick={()=>leftnav('request')}
                         >
                             Request
                         </button>
@@ -177,7 +161,7 @@ const Schedule = () => {
                                 </div>
                             </li>
                             <li style={{ textAlign: "center" }}>
-                                <button className="btn btn-primary btn-next" type="button">
+                                <button className="btn btn-primary btn-next" type="button" onClick={nextstep}>
                                     Next
                                 </button>
                             </li>
@@ -308,10 +292,10 @@ const Schedule = () => {
                                         textAlign: "center",
                                     }}
                                 >
-                                    <button className="btn btn-primary btn-prev" type="button">
+                                    <button className="btn btn-primary btn-prev" type="button" onClick={prevstep}>
                                         Previous
                                     </button>
-                                    <button className="btn btn-primary btn-next" type="button">
+                                    <button className="btn btn-primary btn-next" type="button" onClick={nextstep}>
                                         Next
                                     </button>
                                 </div>
@@ -358,10 +342,10 @@ const Schedule = () => {
                             </table>
                         </div>
                         <div className="my-3" style={{ textAlign: "center" }}>
-                            <button className="btn btn-primary btn-prev" type="button">
+                            <button className="btn btn-primary btn-prev" type="button" onClick={prevstep}>
                                 Previous
                             </button>
-                            <button className="btn btn-primary btn-next">Request</button>
+                            <button className="btn btn-primary btn-next" onClick={nextstep}>Request</button>
                         </div>
                     </div>
                 </form>
@@ -369,5 +353,3 @@ const Schedule = () => {
         </>
     );
 };
-
-export default Schedule;

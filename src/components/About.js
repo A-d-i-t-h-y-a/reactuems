@@ -30,13 +30,40 @@ export default function About() {
   //     event.target.innerHTML = "Enable Light Mode";
   //   }
   // }
-  const [active, setactive] = useState("active");
-  const act = ()=>{
-    if(active === "active")
-    setactive("");
-    else
-    setactive("active")
-  }
+  // const [active, setactive] = useState("active");
+  // const act = ()=>{
+  //   if(active === "active")
+  //   setactive("");
+  //   else
+  //   setactive("active")
+  // }
+  let navitem = document.getElementsByClassName("nav-link");
+      let acc = document.getElementsByClassName("accordion");
+      const act = (cont)=>{
+        for(let item of navitem){
+          let e = document.getElementsByClassName(cont)[0];
+          if(item == e && item.classList.contains("active")){
+            break;
+          }
+          if(item == e && !(item.classList.contains("active"))){
+            item.classList.add("active");
+          }
+          else{
+            item.classList.remove("active");
+          }
+        }
+        for(let content of acc){
+          if(content.id == cont && content.classList.contains("act")){
+            break;
+          }
+          if(content.id == cont && !(content.classList.contains("act"))){
+            content.classList.add("act");
+          }
+          else{
+            content.classList.remove("act");
+          }
+        }
+      }
   return (
     
     // <div className="container my-3 py-3 px-3" {myStyle}>
@@ -148,13 +175,13 @@ export default function About() {
       <div className="container">
         <ul className="nav nav-pills ms-5 mt-">
           <li className="nav-item">
-            <Link activeClassName='is-active' className={`nav-link me-2`} aria-current="page" href="#" onClick={act}>Ongoing</Link>
+            <Link className={`nav-link active me-2 Ongoing`} aria-current="page" href="#" onClick={()=>act('Ongoing')}>Ongoing</Link>
           </li>
           <li className="nav-item me-2">
-            <Link activeClassName='is-active' className={`nav-link`} href="#" onClick="act(this, 'Upcoming')">Upcoming</Link>
+            <Link className={`nav-link Upcoming`} href="#" onClick={()=>act('Upcoming')}>Upcoming</Link>
           </li>
           <li className="nav-item">
-            <Link activeClassName='is-active' className="nav-link" href="#" onClick="act(this, 'Past')">Past</Link>
+            <Link className="nav-link Past" href="#" onClick={()=>act('Past')}>Past</Link>
           </li>
         </ul>
         <div className="accordion m-5 act" id="Ongoing">

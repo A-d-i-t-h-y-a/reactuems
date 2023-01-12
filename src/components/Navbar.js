@@ -7,13 +7,16 @@ import { Link } from 'react-router-dom';
 export default function Navbar(props) {
   const [pass, setpass] = useState("password");
   const [bi, setbi] = useState("bi-eye");
+  // let Pass = document.getElementById("Pass");
+  // let tog = isNaN(Pass.value);
   const ptoggle = () => {
     // let x = document.getElementById("Pass");
     // let icon = document.getElementsByClassName("bi")[0];
     if (pass === "password") {
       setpass("text");
       setbi("bi-eye-slash")
-    } else {
+    }
+    else {
       setpass("password");
       setbi("bi-eye")
     }
