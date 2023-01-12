@@ -88,3 +88,35 @@ svg{
 tbody tr:hover{
     transform: scale(1.1);
 }
+
+.modal-footer {
+    justify-content: center;
+  }
+
+  .modal-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar-brand:hover {
+    transition: .2s ease-in-out;
+    /* transform: rotate(360deg); */
+    transform: rotate(-10deg) scale(1.1);
+  }
+
+  /* .navbar-brand:active{
+    transition: .3s ease-in-out;
+    transform: rotate(360deg);
+  } */
+  @media(min-width: 992px) {
+    .navbar .nav-link:hover {
+      transition: .3s;
+      transform: scale(1.1);
+      border-bottom: 2px solid rgb(0, 136, 255);
+    }
+  }
+  .btn:active {
+    transform: scale(0.9);
+  }
