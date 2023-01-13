@@ -1,3 +1,6 @@
+/* .navbar .nav-link{
+    color: yellow;
+} */
 .modal-body {
     display: flex;
     flex-direction: column;
@@ -71,13 +74,17 @@ svg{
 .step{
     display: none;
 }
+.cards{
+    display: none;
+}
 .act{
     display: block;
 }
 
-#main .btn-link:hover {
+#main .lnav .btn-link:hover {
     transition: .3s;
     transform: scale(1.1);
+    /* border-bottom: 2px solid rgb(0, 136, 255); */
     border-bottom: 2px solid rgb(0, 136, 255);
 }
 
@@ -85,7 +92,7 @@ svg{
     border-bottom: 4px solid rgb(0, 136, 255);
 }
 
-tbody tr:hover{
+.table-hover tbody tr:hover{
     transform: scale(1.1);
 }
 
@@ -111,12 +118,24 @@ tbody tr:hover{
     transform: rotate(360deg);
   } */
   @media(min-width: 992px) {
-    .navbar .nav-link:hover {
+    .nav-link_dark:hover {
+      transition: .3s;
+      transform: scale(1.1);
+      /* border-bottom: 2px solid rgb(0, 136, 255); */
+      border-bottom: 2px solid yellow;
+    }
+    .nav-link_light:hover {
       transition: .3s;
       transform: scale(1.1);
       border-bottom: 2px solid rgb(0, 136, 255);
+      /* border-bottom: 2px solid yellow; */
     }
   }
   .btn:active {
     transform: scale(0.9);
+  }
+
+  .buttons{
+    display: flex;
+    justify-content: space-around;
   }

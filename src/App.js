@@ -11,6 +11,7 @@ import {
 import Schedule from './components/Schedule';
 import Reports from './components/Reports';
 import Requests from './components/Requests';
+import Footer from './components/Footer';
 
 function App() {  
   const [mode, setMode] = useState("light");
@@ -41,6 +42,7 @@ function App() {
           <Route exact path="/Requests" element={<Requests/>}></Route>
           <Route exact path="/" element={<TextForm heading="Enter the Text to Analyse Below" text={text}/>}></Route>
         </Routes>
+        <Footer/>
       </div>
     </Router>
     </>

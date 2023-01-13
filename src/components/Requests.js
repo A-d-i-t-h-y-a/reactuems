@@ -2,6 +2,13 @@ import React from 'react'
 
 export default function Requests() {
     let cards = document.getElementsByClassName("cards");
+    // const pend = useRef(null)
+    let accept = 0
+    let decline = 0
+    const pend = document.getElementsByClassName("pend")[0]
+    console.log(pend)
+    // let accept = document.getElementById("Accepted").getElementsByClassName("card").length;
+    // let decline = document.getElementById("Declined").getElementsByClassName("card").length;
     const reqsts = (e)=>{
       for(let card of cards){
         if(card.id == e && card.classList.contains("act")){
@@ -17,18 +24,18 @@ export default function Requests() {
     }
     return (
         <>
-            <div className="container h-100">
+            <div className="container">
                 <div className="ms-5 mt-3" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" className="btn-check" name="btnradio" id="btnradio1" autoComplete="off" defaultChecked />
-                    <label className="btn btn-outline-primary me-3 my-1" htmlFor="btnradio1" onClick={reqsts('Pending')}>Pending</label>
+                    <label className="btn btn-outline-primary me-3 my-1" htmlFor="btnradio1" onClick={()=>reqsts('Pending')}>Pending <span className='badge text-bg-light text-primary'>{pend}</span> </label>
 
                     <input type="radio" className="btn-check" name="btnradio" id="btnradio2" autoComplete="off" />
-                    <label className="btn btn-outline-success me-3" htmlFor="btnradio2" onClick={reqsts('Accepted')}>Accepted</label>
+                    <label className="btn btn-outline-success me-3" htmlFor="btnradio2" onClick={()=>reqsts('Accepted')}>Accepted({accept})</label>
 
                     <input type="radio" className="btn-check" name="btnradio" id="btnradio3" autoComplete="off" />
-                    <label className="btn btn-outline-danger" htmlFor="btnradio3" onClick={reqsts('Declined')}>Declined</label>
+                    <label className="btn btn-outline-danger" htmlFor="btnradio3" onClick={()=>reqsts('Declined')}>Declined({decline})</label>
                 </div>
-                <div className="cards p-5 mt-3 w-100 shadow bg-body rounded overflow-auto act" id="Pending" style={{ height: "40rem" }}>
+                <div className="cards p-5 mt-3 w-100 shadow bg-body rounded overflow-auto act" id="Pending" style={{ maxHeight: "40rem" }}>
                     <div className="row justify-content-evenly">
                         <div className="col-6 card text-center mx-1 mb-3" style={{ width: "35rem" }}>
                             <div className="card-body">
@@ -40,7 +47,7 @@ export default function Requests() {
                                     voluptatem atque dolorem earum quaerat illum aliquam veritatis
                                     ea quas odit soluta officiis repellendus? Earum dolorum suscipit
                                     molestiae. Itaque ex vel temporibus!
-                                    <button className="btn btn-link" type="button" data-bs-toggle="modal" data-bs-target="#E1">
+                                    <button className="btn btn-link p-0" type="button" data-bs-toggle="modal" data-bs-target="#E1">
                                         Show More
                                     </button>
                                 </p>
@@ -90,7 +97,7 @@ export default function Requests() {
                                     voluptatem atque dolorem earum quaerat illum aliquam veritatis
                                     ea quas odit soluta officiis repellendus? Earum dolorum suscipit
                                     molestiae. Itaque ex vel temporibus!
-                                    <button className="btn btn-link" type="button" data-bs-toggle="modal" data-bs-target="#E2">
+                                    <button className="btn btn-link p-0" type="button" data-bs-toggle="modal" data-bs-target="#E2">
                                         Show More
                                     </button>
                                 </p>
@@ -143,7 +150,7 @@ export default function Requests() {
                                     voluptatem atque dolorem earum quaerat illum aliquam veritatis
                                     ea quas odit soluta officiis repellendus? Earum dolorum suscipit
                                     molestiae. Itaque ex vel temporibus!
-                                    <button className="btn btn-link" type="button" data-bs-toggle="modal" data-bs-target="#E3">
+                                    <button className="btn btn-link p-0" type="button" data-bs-toggle="modal" data-bs-target="#E3">
                                         Show More
                                     </button>
                                 </p>
@@ -193,7 +200,7 @@ export default function Requests() {
                                     voluptatem atque dolorem earum quaerat illum aliquam veritatis
                                     ea quas odit soluta officiis repellendus? Earum dolorum suscipit
                                     molestiae. Itaque ex vel temporibus!
-                                    <button className="btn btn-link" type="button" data-bs-toggle="modal" data-bs-target="#E4">
+                                    <button className="btn btn-link p-0" type="button" data-bs-toggle="modal" data-bs-target="#E4">
                                         Show More
                                     </button>
                                 </p>
@@ -246,7 +253,7 @@ export default function Requests() {
                                     voluptatem atque dolorem earum quaerat illum aliquam veritatis
                                     ea quas odit soluta officiis repellendus? Earum dolorum suscipit
                                     molestiae. Itaque ex vel temporibus!
-                                    <button className="btn btn-link" type="button" data-bs-toggle="modal" data-bs-target="#E5">
+                                    <button className="btn btn-link p-0" type="button" data-bs-toggle="modal" data-bs-target="#E5">
                                         Show More
                                     </button>
                                 </p>
@@ -297,7 +304,7 @@ export default function Requests() {
                                     voluptatem atque dolorem earum quaerat illum aliquam veritatis
                                     ea quas odit soluta officiis repellendus? Earum dolorum suscipit
                                     molestiae. Itaque ex vel temporibus!
-                                    <button className="btn btn-link" type="button" data-bs-toggle="modal" data-bs-target="#E6">
+                                    <button className="btn btn-link p-0" type="button" data-bs-toggle="modal" data-bs-target="#E6">
                                         Show More
                                     </button>
                                 </p>
@@ -350,7 +357,7 @@ export default function Requests() {
                                     voluptatem atque dolorem earum quaerat illum aliquam veritatis
                                     ea quas odit soluta officiis repellendus? Earum dolorum suscipit
                                     molestiae. Itaque ex vel temporibus!
-                                    <button className="btn btn-link" type="button" data-bs-toggle="modal" data-bs-target="#E7">
+                                    <button className="btn btn-link p-0" type="button" data-bs-toggle="modal" data-bs-target="#E7">
                                         Show More
                                     </button>
                                 </p>
@@ -401,7 +408,7 @@ export default function Requests() {
                                     voluptatem atque dolorem earum quaerat illum aliquam veritatis
                                     ea quas odit soluta officiis repellendus? Earum dolorum suscipit
                                     molestiae. Itaque ex vel temporibus!
-                                    <button className="btn btn-link" type="button" data-bs-toggle="modal" data-bs-target="#E8">
+                                    <button className="btn btn-link p-0" type="button" data-bs-toggle="modal" data-bs-target="#E8">
                                         Show More
                                     </button>
                                 </p>
@@ -444,7 +451,7 @@ export default function Requests() {
                         </div>
                     </div>
                 </div>
-                <div className="cards p-5 mt-3 w-100 shadow bg-body rounded overflow-auto" id="Accepted" style={{ height: "40rem" }}>
+                <div className="cards p-5 mt-3 w-100 shadow bg-body rounded overflow-auto" id="Accepted" style={{ maxHeight: "40rem" }}>
                     <div className="row justify-content-evenly">
                         <div className="col-6 card text-center mx-1 mb-3" style={{ width: "35rem" }}>
                             <div className="card-body">
@@ -456,7 +463,7 @@ export default function Requests() {
                                     voluptatem atque dolorem earum quaerat illum aliquam veritatis
                                     ea quas odit soluta officiis repellendus? Earum dolorum suscipit
                                     molestiae. Itaque ex vel temporibus!
-                                    <button className="btn btn-link" type="button" data-bs-toggle="modal" data-bs-target="#E9">
+                                    <button className="btn btn-link p-0" type="button" data-bs-toggle="modal" data-bs-target="#E9">
                                         Show More
                                     </button>
                                 </p>
@@ -505,7 +512,7 @@ export default function Requests() {
                                     voluptatem atque dolorem earum quaerat illum aliquam veritatis
                                     ea quas odit soluta officiis repellendus? Earum dolorum suscipit
                                     molestiae. Itaque ex vel temporibus!
-                                    <button className="btn btn-link" type="button" data-bs-toggle="modal" data-bs-target="#E10">
+                                    <button className="btn btn-link p-0" type="button" data-bs-toggle="modal" data-bs-target="#E10">
                                         Show More
                                     </button>
                                 </p>
@@ -546,7 +553,7 @@ export default function Requests() {
                         </div>
                     </div>
                 </div>
-                <div className="cards p-5 mt-3 w-100 shadow bg-body rounded overflow-auto" id="Declined" style={{ height: "40rem" }}>
+                <div className="cards p-5 mt-3 w-100 shadow bg-body rounded overflow-auto" id="Declined" style={{ maxHeight: "40rem" }}>
                     <div className="row justify-content-evenly">
                         <div className="col-6 card text-center mx-1 mb-3" style={{ width: "35rem" }}>
                             <div className="card-body">
@@ -558,7 +565,7 @@ export default function Requests() {
                                     voluptatem atque dolorem earum quaerat illum aliquam veritatis
                                     ea quas odit soluta officiis repellendus? Earum dolorum suscipit
                                     molestiae. Itaque ex vel temporibus!
-                                    <button className="btn btn-link" type="button" data-bs-toggle="modal" data-bs-target="#E11">
+                                    <button className="btn btn-link p-0" type="button" data-bs-toggle="modal" data-bs-target="#E11">
                                         Show More
                                     </button>
                                 </p>
@@ -607,7 +614,7 @@ export default function Requests() {
                                     voluptatem atque dolorem earum quaerat illum aliquam veritatis
                                     ea quas odit soluta officiis repellendus? Earum dolorum suscipit
                                     molestiae. Itaque ex vel temporibus!
-                                    <button className="btn btn-link" type="button" data-bs-toggle="modal" data-bs-target="#E12">
+                                    <button className="btn btn-link p-0" type="button" data-bs-toggle="modal" data-bs-target="#E12">
                                         Show More
                                     </button>
                                 </p>

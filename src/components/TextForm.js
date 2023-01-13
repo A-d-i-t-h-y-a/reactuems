@@ -57,7 +57,7 @@ export default function TextForm(props) {
                 <h2 style={{color: props.text === "dark"?"black":"white"}}>Preview</h2>
                 <p style={{color: props.text === "dark"?"black":"white"}}>{text}</p>
             </div> */}
-            <div id="carouselExampleCaptions" className="carousel slide mx-auto w-75 my-3 carousel-fade" data-bs-ride="false">
+            <div id="carouselExampleCaptions" className="carousel slide mx-auto w-100 my-3 carousel-fade" data-bs-ride="false">
                 <div className="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active"
                         aria-current="true" aria-label="Slide 1"></button>

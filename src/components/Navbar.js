@@ -7,6 +7,10 @@ import { Link } from 'react-router-dom';
 export default function Navbar(props) {
   const [pass, setpass] = useState("password");
   const [bi, setbi] = useState("bi-eye");
+  const [mystyle, setstyle] = useState("#b4e0ff")
+  const [co, setco] = useState(null)
+  const [navt, setnavt] = useState("nav-link_light");
+  // const [text, settext] = useState()
   // let Pass = document.getElementById("Pass");
   // let tog = isNaN(Pass.value);
   const ptoggle = () => {
@@ -30,6 +34,19 @@ export default function Navbar(props) {
     //   // icon.classList.add(bi);
     // }
   };
+
+  const theme = ()=>{
+    if(mystyle == "#b4e0ff"){
+      setstyle("#3700B3")
+      setco({color: 'yellow'})
+      setnavt("nav-link_dark");
+    }
+    else{
+      setstyle("#b4e0ff");
+      setco()
+      setnavt("nav-link_light")
+    }
+  }
   return (
 //     <div>
 //       <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
@@ -60,7 +77,8 @@ export default function Navbar(props) {
 //     </nav>
 //     </div>
     <>
-      <nav className="navbar navbar-expand-lg shadow rounded mb-2" style={{backgroundColor: "#b4e0ff"}}>
+      {/* <nav className="navbar navbar-expand-lg shadow rounded mb-2" style={{backgroundColor: "#b4e0ff"}}> */}
+      <nav className="navbar navbar-expand-lg shadow mb-2" style={{backgroundColor: mystyle}}>
         <div className="container-fluid">
           <Link className="navbar-brand" to="/"><img src="./kmit-bar.png" alt='Unable To Load' style={{width: "3.5rem"}}/></Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -70,22 +88,23 @@ export default function Navbar(props) {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav m-auto mb-2 mb-lg-0">
               <li className="nav-item mx-5">
-                <Link className="nav-link" aria-current="page" to="/" id="navhome">Home</Link>
+                <Link className={`nav-link ${navt}`} aria-current="page" style={co} to="/" id="navhome">Home</Link>
               </li>
               <li className="nav-item mx-5">
-                <Link className="nav-link" aria-current="page" to="/events" id="navevents">Events</Link>
+                <Link className={`nav-link ${navt}`} aria-current="page" style={co} to="/events" id="navevents">Events</Link>
               </li>
               <li className="after_login nav-item mx-5">
-                <Link className="nav-link" aria-current="page" to="/Schedule" id="navsch">Schedule Event</Link>
+                <Link className={`nav-link ${navt}`} aria-current="page" style={co} to="/Schedule" id="navsch">Schedule Event</Link>
               </li>
               <li className="after_login nav-item mx-5">
-                <Link className="nav-link" aria-current="page" to="/Reports" id="navreports">Reports</Link>
+                <Link className={`nav-link ${navt}`} aria-current="page" style={co} to="/Reports" id="navreports">Reports</Link>
               </li>
               <li className="after_login nav-item mx-5">
-                <Link className="nav-link" aria-current="page" to="/Requests" id="navreq">Requests</Link>
+                <Link className={`nav-link ${navt}`} aria-current="page" style={co} to="/Requests" id="navreq">Requests</Link>
               </li>
             </ul>
-            <button className="btn btn-outline-success px-5" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <a onClick={theme} style={{cursor: "pointer"}}><i className={`${mystyle=="#b4e0ff"?"bi bi-moon-fill":"bi bi-sun-fill"} me-3 fs-5`} style={mystyle=="#b4e0ff"?null:{filter: "invert(1)"}}></i></a>
+            <button className={`btn btn-outline-${mystyle=="#b4e0ff"?"success":"light"} px-5`} type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
               Login
             </button>
             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
