@@ -10,6 +10,7 @@ export default function Navbar(props) {
   const [mystyle, setstyle] = useState("#b4e0ff")
   const [co, setco] = useState(null)
   const [navt, setnavt] = useState("nav-link_light");
+  const [show, setshow] = useState("none")
   // const [text, settext] = useState()
   // let Pass = document.getElementById("Pass");
   // let tog = isNaN(Pass.value);
@@ -45,6 +46,15 @@ export default function Navbar(props) {
       setstyle("#b4e0ff");
       setco()
       setnavt("nav-link_light")
+    }
+  }
+
+  const handleOnChange = (e)=>{
+    if(e.target.value == ""){
+      setshow("none");
+    }
+    else{
+      setshow("block")
     }
   }
   return (
@@ -120,8 +130,8 @@ export default function Navbar(props) {
                         name="User Name" aria-describedby="basic-addon1" id="UserName"/>
                         <h4 className="mt-3">Password</h4>
                           <input type={pass} className="form-control col-8" placeholder="Password" aria-label="Password"
-                            name="Password" aria-describedby="basic-addon1" id="Pass"/>
-                            <Link style={{display: "block", marginTop: "-30px", marginLeft: "auto", marginRight: "1rem"}} type="button"><i className={bi} onClick={ptoggle}></i></Link>
+                            name="Password" aria-describedby="basic-addon1" id="Pass" onChange={handleOnChange}/>
+                            <Link style={{display: show, marginTop: "-30px", marginLeft: "auto", marginRight: "1rem"}} type="button"><i className={bi} onClick={ptoggle}></i></Link>
                             <button type="submit" className="btn btn-primary mt-5">Login</button>
                           </div>
                         </div>

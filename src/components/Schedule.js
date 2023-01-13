@@ -177,7 +177,7 @@ export default function Schedule() {
                   <h3 className="col-lg-4">
                     Menu (
                     <button
-                      className="btn btn-link text-decoration-none col-4 fs-6 text-primary"
+                      className="btn btn-link text-decoration-none col-6 fs-6 text-primary"
                       onClick={checkfunc}
                       type="button"
                     >
