@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-export default function TextForm(props) {
+export default function Home(props) {
     // const handleUpClick = (event)=>{
     //     // console.log("Upper Case is clicked "+text);
     //     if (event.target.innerHTML === "Convert to lower case"){
@@ -103,3 +103,4 @@ export default function TextForm(props) {
         </>
     )
 }
+
