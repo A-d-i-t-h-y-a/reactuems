@@ -6,7 +6,7 @@ export default function Requests() {
     let accept = 0
     let decline = 0
     const pend = document.getElementsByClassName("pend")[0]
-    console.log(pend)
+    // console.log(pend)
     // let accept = document.getElementById("Accepted").getElementsByClassName("card").length;
     // let decline = document.getElementById("Declined").getElementsByClassName("card").length;
     const reqsts = (e)=>{
