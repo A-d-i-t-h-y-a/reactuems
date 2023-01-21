@@ -12,6 +12,7 @@ import Requests from './components/Requests';
 import Footer from './components/Footer';
 import Events from './components/Events';
 import Home from './components/Home';
+import Alert from './components/Alert';
 
 function App() {  
   const [mode, setMode] = useState("light");
@@ -29,12 +30,24 @@ function App() {
       document.body.style.backgroundColor = "white";
     }
     
-  } 
+  }
+
+  const [alert, setAlert] = useState(null)
+  const showAlert = (message, type)=>{
+    setAlert({
+      msg: message,
+      type: type
+    })
+    setTimeout(() => {
+      setAlert(null)
+    }, 2000);
+  }
   return (
     <>
     <Router>
-      <Navbar title="TextUtils" about="About" mode={mode} toggleMode={toggleMode}/>
+      <Navbar title="TextUtils" about="About" mode={mode} toggleMode={toggleMode} showAlert={showAlert}/>
       <div className='container my-3'>
+      <Alert alert={alert}/>
         <Routes>
           <Route exact path="/events" element={<Events/>}></Route>
           <Route exact path="/Schedule" element={<Schedule/>}></Route>
