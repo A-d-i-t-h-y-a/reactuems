@@ -42,10 +42,14 @@ function App() {
       setAlert(null)
     }, 2000);
   }
+  const [login, setLogin] = useState("none")
+  const loggedin = (log)=>{
+    setLogin(log)
+  }
   return (
     <>
     <Router>
-      <Navbar title="TextUtils" about="About" mode={mode} toggleMode={toggleMode} showAlert={showAlert}/>
+      <Navbar title="TextUtils" about="About" mode={mode} toggleMode={toggleMode} showAlert={showAlert} loggedin = {loggedin} login={login}/>
       <div className='container my-3'>
       <Alert alert={alert}/>
         <Routes>

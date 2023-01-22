@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import '../index.css';
 import { Link, useLocation , useNavigate} from 'react-router-dom';
-// import { useEffect } from 'react';
 
 export default function Navbar(props) {
   const [pass, setpass] = useState("password");
@@ -14,7 +13,7 @@ export default function Navbar(props) {
   const ref = useRef(null)
   let location = useLocation();
   useEffect(() => {
-    console.log(location.pathname)
+
   }, [location])
   // const [text, settext] = useState()
   // let Pass = document.getElementById("Pass");
@@ -63,6 +62,15 @@ export default function Navbar(props) {
     }
     setCred({ ...cred, [e.target.name]: e.target.value })
   }
+  useEffect(()=>{
+    if(localStorage.getItem("token")){
+      props.loggedin("block")
+    }
+    else{
+      props.loggedin("none")
+    }
+  },[])
+
   let history = useNavigate()
   const handleOnSubmit = async (e) => {
     e.preventDefault()
@@ -75,9 +83,23 @@ export default function Navbar(props) {
     })
     const json = await response.json()
     console.log(json)
-    ref.current.click()
-    history("/Schedule")
-    props.showAlert("Logged In Successfully", "success")
+    if(json.success){
+      ref.current.click()
+      // history("/Schedule")
+      props.showAlert("Logged In Successfully", "success")
+      props.loggedin("block")
+      localStorage.setItem("token", json.authToken)
+    }
+    else{
+      props.showAlert("Enter Valid Credentials", "danger")
+      ref.current.click()
+    }
+  }
+
+  const handleLogout = ()=>{
+    localStorage.removeItem("token")
+    props.loggedin("none")
+    history("/")
   }
   return (
     //     <div>
@@ -125,20 +147,20 @@ export default function Navbar(props) {
               <li className="nav-item mx-5">
                 <Link className={`nav-link ${navt} ${location.pathname === "/events" ? "active" : ""}`} aria-current="page" style={{ color: (navt === "nav-link_dark") && (location.pathname === '/events' ? "yellow" : "rgb(193, 193, 0)") }} to="/events" id="navevents">Events</Link>
               </li>
-              <li className="after_login nav-item mx-5">
+              <li className={`nav-item mx-5 d-${props.login}`}>
                 <Link className={`nav-link ${navt} ${location.pathname === "/Schedule" ? "active" : ""}`} aria-current="page" style={{ color: (navt === "nav-link_dark") && (location.pathname === '/Schedule' ? "yellow" : "rgb(193, 193, 0)") }} to="/Schedule" id="navsch">Schedule Event</Link>
               </li>
-              <li className="after_login nav-item mx-5">
+              <li className={`nav-item mx-5 d-${props.login}`}>
                 <Link className={`nav-link ${navt} ${location.pathname === "/Reports" ? "active" : ""}`} aria-current="page" style={{ color: (navt === "nav-link_dark") && (location.pathname === '/Reports' ? "yellow" : "rgb(193, 193, 0)") }} to="/Reports" id="navreports">Reports</Link>
               </li>
-              <li className="after_login nav-item mx-5">
+              <li className={`nav-item mx-5 d-${props.login}`}>
                 <Link className={`nav-link ${navt} ${location.pathname === "/Requests" ? "active" : ""}`} aria-current="page" style={{ color: (navt === "nav-link_dark") && (location.pathname === '/Requests' ? "yellow" : "rgb(193, 193, 0)") }} to="/Requests" id="navreq">Requests</Link>
               </li>
             </ul>
             <a onClick={theme} style={{ cursor: "pointer" }}><i className={`${mystyle == "#b4e0ff" ? "bi bi-moon-fill" : "bi bi-sun-fill"} me-3 fs-5`} style={mystyle == "#b4e0ff" ? null : { filter: "invert(1)" }}></i></a>
-            <button className={`btn btn-outline-${mystyle == "#b4e0ff" ? "success" : "light"} px-5`} type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            {localStorage.getItem("token")?<button className={`btn btn-outline-${mystyle == "#b4e0ff" ? "danger" : "light"} px-4`} onClick={handleLogout}>Logout</button>:<button className={`btn btn-outline-${mystyle == "#b4e0ff" ? "success" : "light"} px-5`} type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
               Login
-            </button>
+            </button>}
             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div className="modal-dialog">
                 <div className="modal-content">
