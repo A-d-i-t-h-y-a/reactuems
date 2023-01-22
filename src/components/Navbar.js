@@ -68,7 +68,7 @@ export default function Navbar() {
                 <Link className={`nav-link ${navt}`} aria-current="page" style={co} to="/Requests" id="navreq">Requests</Link>
               </li>
             </ul>
-            <a onClick={theme} style={{ cursor: "pointer" }} href="/"><i className={`${mystyle === "#b4e0ff" ? "bi bi-moon-fill" : "bi bi-sun-fill"} me-3 fs-5`} style={mystyle === "#b4e0ff" ? null : { filter: "invert(1)" }}></i></a>
+            <Link onClick={theme} style={{ cursor: "pointer" , color: "black" }}><i className={`${mystyle === "#b4e0ff" ? "bi bi-moon-fill" : "bi bi-sun-fill"} me-3 fs-5`} style={mystyle === "#b4e0ff" ? null : { filter: "invert(1)" }}></i></Link>
             <button className={`btn btn-outline-${mystyle === "#b4e0ff" ? "success" : "light"} px-5`} type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
               Login
             </button>
