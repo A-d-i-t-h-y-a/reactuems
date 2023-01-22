@@ -1,4 +1,4 @@
-const dotenv = require('dotenv')
+// const dotenv = require('dotenv')
 const express = require('express')
 const User = require("../models/User")
 const router = express.Router()
@@ -6,8 +6,9 @@ const bcrypt = require("bcryptjs")
 const jwt = require('jsonwebtoken')
 const fetchuser = require('../middleware/fetchuser')
 
-dotenv.config({ path : './config.env'})
-const JWT_SECRET = process.env.JWT_SECRET
+// dotenv.config({ path : './config.env'})
+// const JWT_SECRET = process.env.JWT_SECRET
+const JWT_SECRET = "thisisUEMSProject"
 
 // Route 1: Creating an User
 
@@ -41,13 +42,14 @@ router.post('/create', async(req, res)=>{
 router.post('/login', async (req, res)=>{
     const {username, password} = req.body
     try {
+        let success = false;
         let user = await User.findOne({username})
         if(!user){
-            return res.status(400).json({Error: "Enter valid Details"})
+            return res.status(400).json({success, Error: "Enter valid Details"})
         }
         let passcomp = await bcrypt.compare(password, user.password)
         if(!passcomp){
-            return res.status(400).json({Error: "Enter valid Details"})
+            return res.status(400).json({success, Error: "Enter valid Details"})
         }
         const data = {
             user:{
@@ -56,7 +58,8 @@ router.post('/login', async (req, res)=>{
         }
 
         const authToken = jwt.sign(data, JWT_SECRET);
-        res.json({authToken: authToken})
+        success = true
+        res.json({success, authToken: authToken})
     } catch (error) {
         console.log(error.message);
         res.status(500).send("Internal Server Error Occured");
