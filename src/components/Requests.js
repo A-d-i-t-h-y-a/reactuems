@@ -1,11 +1,49 @@
 import React from 'react'
+import Event from './Event';
 
 export default function Requests() {
+    // let prequests = [
+    //     {
+    //         id: 1,
+    //         event: `Event 1`,
+    //         description: desc
+    //     },
+    //     {
+    //         id: 2,
+    //         event: `Event 2`,
+    //         description: desc
+    //     },
+    //     {
+    //         id: 3,
+    //         event: `Event 3`,
+    //         description: desc
+    //     },
+    //     {
+    //         id: 4,
+    //         event: `Event 4`,
+    //         description: desc
+    //     },
+    //     {
+    //         id: 5,
+    //         event: `Event 5`,
+    //         description: desc
+    //     },
+    //     {
+    //         id: 6,
+    //         event: `Event 6`,
+    //         description: desc
+    //     },
+    //     {
+    //         id: 7,
+    //         event: `Event 7`,
+    //         description: desc
+    //     }
+    // ]
     let cards = document.getElementsByClassName("cards");
     // const pend = useRef(null)
     let accept = 0
     let decline = 0
-    const pend = document.getElementsByClassName("pend")[0]
+    const pend = 0
     // console.log(pend)
     // let accept = document.getElementById("Accepted").getElementsByClassName("card").length;
     // let decline = document.getElementById("Declined").getElementsByClassName("card").length;
@@ -27,17 +65,17 @@ export default function Requests() {
             <div className="container">
                 <div className="ms-5 mt-3" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" className="btn-check" name="btnradio" id="btnradio1" autoComplete="off" defaultChecked />
-                    <label className="btn btn-outline-primary me-3 my-1" htmlFor="btnradio1" onClick={()=>reqsts('Pending')}>Pending <span className='badge text-bg-light text-primary'>{pend}</span> </label>
+                    <label className="btn btn-outline-primary me-3 my-1" htmlFor="btnradio1" onClick={()=>reqsts('Pending')}>Pending <span className='badge rounded-pill text-bg-secondary'>{pend}</span> </label>
 
                     <input type="radio" className="btn-check" name="btnradio" id="btnradio2" autoComplete="off" />
-                    <label className="btn btn-outline-success me-3" htmlFor="btnradio2" onClick={()=>reqsts('Accepted')}>Accepted({accept})</label>
+                    <label className="btn btn-outline-success me-3" htmlFor="btnradio2" onClick={()=>reqsts('Accepted')}>Accepted <span className='badge rounded-pill text-bg-secondary'>{accept}</span></label>
 
                     <input type="radio" className="btn-check" name="btnradio" id="btnradio3" autoComplete="off" />
-                    <label className="btn btn-outline-danger" htmlFor="btnradio3" onClick={()=>reqsts('Declined')}>Declined({decline})</label>
+                    <label className="btn btn-outline-danger" htmlFor="btnradio3" onClick={()=>reqsts('Declined')}>Declined <span className='badge rounded-pill text-bg-secondary'>{decline}</span></label>
                 </div>
                 <div className="cards p-5 mt-3 w-100 shadow bg-body rounded overflow-auto act" id="Pending" style={{ maxHeight: "40rem" }}>
                     <div className="row justify-content-evenly">
-                        <div className="col-6 card text-center mx-1 mb-3" style={{ width: "35rem" }}>
+                    <div className="col-6 card text-center mx-1 mb-3" style={{ width: "35rem" }}>
                             <div className="card-body">
                                 <h5 className="card-title">Event 1</h5>
                                 <p className="card-text">

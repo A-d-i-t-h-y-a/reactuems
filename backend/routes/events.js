@@ -18,4 +18,15 @@ router.post('/newevent',fetchuser, async (req, res)=>{
     }
 })
 
+// ROUTE 2: fetch events
+router.post('/events', fetchuser, async (req, res)=>{
+    try {
+        const events = await Events.find({ user: req.user.id });
+        res.json(events);
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).send("Internal Server Error Occured");
+    }
+})
+
 module.exports = router

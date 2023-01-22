@@ -1,8 +1,11 @@
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
 
-dotenv.config({ path : './config.env'})
-const JWT_SECRET = process.env.JWT_SECRET
+// dotenv.config({ path : './config.env'})
+// const JWT_SECRET = process.env.JWT_SECRET
+
+const JWT_SECRET = "thisisUEMSProject"
+
 
 const fetchuser = (req, res, next)=>{
     const authToken = req.header("auth-token")

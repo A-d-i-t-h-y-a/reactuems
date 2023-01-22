@@ -4,7 +4,8 @@ const {Schema} = mongoose
 const eventSchema = new Schema({
     name:{
         type:String,
-        required: true
+        required: true,
+        unique: true
     },
     description:{
         type:String,
@@ -16,7 +17,7 @@ const eventSchema = new Schema({
     },
     date_time:{
         type: Date,
-        required: true
+        default: Date.now
     },
     venue:{
         type:String,

@@ -1,13 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 // import "./Schedule.css"
 // import { button } from 'react-router-dom';
 
-export default function Schedule() {
+export default function Schedule(props) {
   // let nextBtn = document.querySelectorAll(".btn-next");
   // let prevBtn = document.querySelectorAll(".btn-prev");
   let formStep = document.getElementsByClassName("step");
   // let Bookbtn = document.getElementById("Bookbtn");
   let btn_link = document.getElementsByClassName("btn-link");
+  let history = useNavigate();
 
   const nextstep = () => {
     // formStep.forEach((formstep)=>{
@@ -79,6 +81,13 @@ export default function Schedule() {
       i.setAttribute("checked", "");
     }
   };
+
+  const handleOnSubmit = (e)=>{
+    e.preventDefault();
+    
+    history("/Schedule")
+    props.showAlert("Request sent", "success")
+  }
   return (
     <>
       <div
@@ -108,7 +117,7 @@ export default function Schedule() {
             </button>
           </div>
         </div>
-        <form className="Book container w-sm-75 ms-sm-5 me-sm-5 my-5 shadow bg-body rounded d-flex" style={{minHeight: "90%"}}>
+        <form className="Book container w-sm-75 ms-sm-5 me-sm-5 my-5 shadow bg-body rounded d-flex" style={{minHeight: "90%"}} onSubmit={handleOnSubmit}>
           <div id="book" className="step act" style={{ overflow: "auto" }}>
             <ul>
               <li>
@@ -357,7 +366,7 @@ export default function Schedule() {
               >
                 Previous
               </button>
-              <button className="btn btn-primary btn-next" onClick={nextstep}>
+              <button className="btn btn-primary btn-next" type="submit">
                 Request
               </button>
             </div>

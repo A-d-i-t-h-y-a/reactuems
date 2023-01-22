@@ -54,7 +54,7 @@ function App() {
       <Alert alert={alert}/>
         <Routes>
           <Route exact path="/events" element={<Events/>}></Route>
-          <Route exact path="/Schedule" element={<Schedule/>}></Route>
+          <Route exact path="/Schedule" element={<Schedule showAlert={showAlert}/>}></Route>
           <Route exact path="/Reports" element={<Reports/>}></Route>
           <Route exact path="/Requests" element={<Requests/>}></Route>
           <Route exact path="/" element={<Home heading="Enter the Text to Analyse Below" text={text}/>}></Route>
