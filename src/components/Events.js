@@ -11,7 +11,7 @@ export default function Events() {
   // })
 
   // const enable = (event) => {
-  //   if (myStyle.color === "white") {
+  //   if (myStyle.color ==== "white") {
   //     setMyStyle({
   //       color: 'black',
   //       backgroundColor: 'white',
@@ -32,7 +32,7 @@ export default function Events() {
   // }
   // const [active, setactive] = useState("active");
   // const act = ()=>{
-  //   if(active === "active")
+  //   if(active ==== "active")
   //   setactive("");
   //   else
   //   setactive("active")
@@ -42,10 +42,10 @@ export default function Events() {
       const act = (cont)=>{
         for(let item of navitem){
           let e = document.getElementsByClassName(cont)[0];
-          if(item == e && item.classList.contains("active")){
+          if(item === e && item.classList.contains("active")){
             break;
           }
-          if(item == e && !(item.classList.contains("active"))){
+          if(item === e && !(item.classList.contains("active"))){
             item.classList.add("active");
           }
           else{
@@ -53,10 +53,10 @@ export default function Events() {
           }
         }
         for(let content of acc){
-          if(content.id == cont && content.classList.contains("act")){
+          if(content.id === cont && content.classList.contains("act")){
             break;
           }
-          if(content.id == cont && !(content.classList.contains("act"))){
+          if(content.id === cont && !(content.classList.contains("act"))){
             content.classList.add("act");
           }
           else{

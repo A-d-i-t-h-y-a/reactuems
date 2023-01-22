@@ -11,9 +11,9 @@ export default function Footer() {
             </div>
 
             <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
-            <li className="ms-3"><a href="#"><i className='bi bi-facebook'></i></a></li>
-            <li className="ms-3"><a href="#"><i className='bi bi-instagram text-black'></i></a></li>
-            <li className="ms-3"><a href="https://github.com/A-d-i-t-h-y-a" target="_blank"><i className='bi bi-github text-black'></i></a></li>
+            <li className="ms-3"><a href="/"><i className='bi bi-facebook'></i></a></li>
+            <li className="ms-3"><a href="/"><i className='bi bi-instagram text-black'></i></a></li>
+            <li className="ms-3"><a href="https://github.com/A-d-i-t-h-y-a" target="_blank" rel="noreferrer"><i className='bi bi-github text-black'></i></a></li>
             </ul>
         </footer>
     </div>

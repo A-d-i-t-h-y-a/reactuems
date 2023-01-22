@@ -11,10 +11,10 @@ export default function Requests() {
     // let decline = document.getElementById("Declined").getElementsByClassName("card").length;
     const reqsts = (e)=>{
       for(let card of cards){
-        if(card.id == e && card.classList.contains("act")){
+        if(card.id === e && card.classList.contains("act")){
           break;
         }
-        if(card.id == e && !(card.classList.contains("act"))){
+        if(card.id === e && !(card.classList.contains("act"))){
           card.classList.add("act");
         }
         else{
@@ -83,8 +83,8 @@ export default function Requests() {
                                         </div>
                                     </div>
                                 </div>
-                                <a href="#" className="btn btn-lg btn-success me-sm-5 me-1 my-1">Accept</a>
-                                <a href="#" className="btn btn-lg btn-danger">Reject</a>
+                                <a href="/" className="btn btn-lg btn-success me-sm-5 me-1 my-1">Accept</a>
+                                <a href="/" className="btn btn-lg btn-danger">Reject</a>
                             </div>
                         </div>
                         <div className="col-6 card text-center mb-3" style={{ width: "35rem" }}>
@@ -134,8 +134,8 @@ export default function Requests() {
                                         </div>
                                     </div>
                                 </div>
-                                <a href="#" className="btn btn-lg btn-success me-sm-5 me-1 my-1">Accept</a>
-                                <a href="#" className="btn btn-lg btn-danger">Reject</a>
+                                <a href="/" className="btn btn-lg btn-success me-sm-5 me-1 my-1">Accept</a>
+                                <a href="/" className="btn btn-lg btn-danger">Reject</a>
                             </div>
                         </div>
                     </div>
@@ -186,8 +186,8 @@ export default function Requests() {
                                         </div>
                                     </div>
                                 </div>
-                                <a href="#" className="btn btn-lg btn-success me-sm-5 me-1 my-1">Accept</a>
-                                <a href="#" className="btn btn-lg btn-danger">Reject</a>
+                                <a href="/" className="btn btn-lg btn-success me-sm-5 me-1 my-1">Accept</a>
+                                <a href="/" className="btn btn-lg btn-danger">Reject</a>
                             </div>
                         </div>
                         <div className="col-6 card text-center mb-3" style={{ width: "35rem" }}>
@@ -237,8 +237,8 @@ export default function Requests() {
                                         </div>
                                     </div>
                                 </div>
-                                <a href="#" className="btn btn-lg btn-success me-sm-5 me-1 my-1">Accept</a>
-                                <a href="#" className="btn btn-lg btn-danger">Reject</a>
+                                <a href="/" className="btn btn-lg btn-success me-sm-5 me-1 my-1">Accept</a>
+                                <a href="/" className="btn btn-lg btn-danger">Reject</a>
                             </div>
                         </div>
                     </div>
@@ -290,8 +290,8 @@ export default function Requests() {
                                         </div>
                                     </div>
                                 </div>
-                                <a href="#" className="btn btn-lg btn-success me-sm-5 me-1 my-1">Accept</a>
-                                <a href="#" className="btn btn-lg btn-danger">Reject</a>
+                                <a href="/" className="btn btn-lg btn-success me-sm-5 me-1 my-1">Accept</a>
+                                <a href="/" className="btn btn-lg btn-danger">Reject</a>
                             </div>
                         </div>
                         <div className="col-6 card text-center mb-3" style={{ width: "35rem" }}>
@@ -341,8 +341,8 @@ export default function Requests() {
                                         </div>
                                     </div>
                                 </div>
-                                <a href="#" className="btn btn-lg btn-success me-sm-5 me-1 my-1">Accept</a>
-                                <a href="#" className="btn btn-lg btn-danger">Reject</a>
+                                <a href="/" className="btn btn-lg btn-success me-sm-5 me-1 my-1">Accept</a>
+                                <a href="/" className="btn btn-lg btn-danger">Reject</a>
                             </div>
                         </div>
                     </div>
@@ -394,8 +394,8 @@ export default function Requests() {
                                         </div>
                                     </div>
                                 </div>
-                                <a href="#" className="btn btn-lg btn-success me-sm-5 me-1 my-1">Accept</a>
-                                <a href="#" className="btn btn-lg btn-danger">Reject</a>
+                                <a href="/" className="btn btn-lg btn-success me-sm-5 me-1 my-1">Accept</a>
+                                <a href="/" className="btn btn-lg btn-danger">Reject</a>
                             </div>
                         </div>
                         <div className="col-6 card text-center mb-3" style={{ width: "35rem" }}>
@@ -445,8 +445,8 @@ export default function Requests() {
                                         </div>
                                     </div>
                                 </div>
-                                <a href="#" className="btn btn-lg btn-success me-sm-5 me-1 my-1">Accept</a>
-                                <a href="#" className="btn btn-lg btn-danger">Reject</a>
+                                <a href="/" className="btn btn-lg btn-success me-sm-5 me-1 my-1">Accept</a>
+                                <a href="/" className="btn btn-lg btn-danger">Reject</a>
                             </div>
                         </div>
                     </div>

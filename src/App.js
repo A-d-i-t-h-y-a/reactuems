@@ -12,6 +12,7 @@ import Requests from './components/Requests';
 import Footer from './components/Footer';
 import Events from './components/Events';
 import Home from './components/Home';
+import AboutUs from './components/AboutUs';
 
 function App() {  
   const [mode, setMode] = useState("light");
@@ -41,6 +42,7 @@ function App() {
           <Route exact path="/Reports" element={<Reports/>}></Route>
           <Route exact path="/Requests" element={<Requests/>}></Route>
           <Route exact path="/" element={<Home heading="Enter the Text to Analyse Below" text={text}/>}></Route>
+          <Route exact path="/about" element={<AboutUs/>}></Route>
         </Routes>
         <Footer/>
       </div>
