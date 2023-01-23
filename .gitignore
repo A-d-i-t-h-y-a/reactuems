@@ -6,6 +6,8 @@ node_modules
 .pnp.js
 backend
 .gitignore
+module1.mjs
+module2.mjs
 
 # testing
 /coverage
