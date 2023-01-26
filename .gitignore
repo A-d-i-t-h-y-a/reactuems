@@ -4,11 +4,15 @@
 node_modules
 /.pnp
 .pnp.js
-backend
+<<<<<<< HEAD
 .gitignore
 module1.mjs
 module2.mjs
 
+=======
+config.env
+.gitignore
+>>>>>>> UEMSbackend
 # testing
 /coverage
 

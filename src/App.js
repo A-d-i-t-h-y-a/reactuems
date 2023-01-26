@@ -12,7 +12,11 @@ import Requests from './components/Requests';
 import Footer from './components/Footer';
 import Events from './components/Events';
 import Home from './components/Home';
+<<<<<<< HEAD
 import AboutUs from './components/AboutUs';
+=======
+import Alert from './components/Alert';
+>>>>>>> UEMSbackend
 
 function App() {  
   const [mode, setMode] = useState("light");
@@ -30,15 +34,31 @@ function App() {
       document.body.style.backgroundColor = "white";
     }
     
-  } 
+  }
+
+  const [alert, setAlert] = useState(null)
+  const showAlert = (message, type)=>{
+    setAlert({
+      msg: message,
+      type: type
+    })
+    setTimeout(() => {
+      setAlert(null)
+    }, 2000);
+  }
+  const [login, setLogin] = useState("none")
+  const loggedin = (log)=>{
+    setLogin(log)
+  }
   return (
     <>
     <Router>
-      <Navbar title="TextUtils" about="About" mode={mode} toggleMode={toggleMode}/>
+      <Navbar title="TextUtils" about="About" mode={mode} toggleMode={toggleMode} showAlert={showAlert} loggedin = {loggedin} login={login}/>
       <div className='container my-3'>
+      <Alert alert={alert}/>
         <Routes>
           <Route exact path="/events" element={<Events/>}></Route>
-          <Route exact path="/Schedule" element={<Schedule/>}></Route>
+          <Route exact path="/Schedule" element={<Schedule showAlert={showAlert}/>}></Route>
           <Route exact path="/Reports" element={<Reports/>}></Route>
           <Route exact path="/Requests" element={<Requests/>}></Route>
           <Route exact path="/" element={<Home heading="Enter the Text to Analyse Below" text={text}/>}></Route>
