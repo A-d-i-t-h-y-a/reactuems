@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import '../index.css';
 import { Link, useLocation , useNavigate} from 'react-router-dom';
 
-export default function Navbar() {
+export default function Navbar(props) {
   const [pass, setpass] = useState("password");
   const [bi, setbi] = useState("bi-eye");
   const [mystyle, setstyle] = useState("#b4e0ff")
@@ -104,19 +104,19 @@ export default function Navbar() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav m-auto mb-2 mb-lg-0">
               <li className="nav-item mx-5">
-                <Link className={`nav-link ${navt} ${location.pathname === "/" ? "active" : ""}`} aria-current="page" style={{ color: (navt === "nav-link_dark") && (location.pathname === '/' ? "yellow" : "rgb(193, 193, 0)") }} to="/" id="navhome">Home</Link>
+                <Link className={`nav-link ${navt} ${location.pathname === "/" ? "active fw-bold" : ""}`} aria-current="page" style={{ color: (navt === "nav-link_dark") && (location.pathname === '/' ? "yellow" : "rgb(193, 193, 0)") }} to="/" id="navhome">Home</Link>
               </li>
               <li className="nav-item mx-5">
-                <Link className={`nav-link ${navt} ${location.pathname === "/events" ? "active" : ""}`} aria-current="page" style={{ color: (navt === "nav-link_dark") && (location.pathname === '/events' ? "yellow" : "rgb(193, 193, 0)") }} to="/events" id="navevents">Events</Link>
+                <Link className={`nav-link ${navt} ${location.pathname === "/events" ? "active fw-bold" : ""}`} aria-current="page" style={{ color: (navt === "nav-link_dark") && (location.pathname === '/events' ? "yellow" : "rgb(193, 193, 0)") }} to="/events" id="navevents">Events</Link>
               </li>
               <li className={`nav-item mx-5 d-${props.login}`}>
-                <Link className={`nav-link ${navt} ${location.pathname === "/Schedule" ? "active" : ""}`} aria-current="page" style={{ color: (navt === "nav-link_dark") && (location.pathname === '/Schedule' ? "yellow" : "rgb(193, 193, 0)") }} to="/Schedule" id="navsch">Schedule Event</Link>
+                <Link className={`nav-link ${navt} ${location.pathname === "/Schedule" ? "active fw-bold" : ""}`} aria-current="page" style={{ color: (navt === "nav-link_dark") && (location.pathname === '/Schedule' ? "yellow" : "rgb(193, 193, 0)") }} to="/Schedule" id="navsch">Schedule Event</Link>
               </li>
               <li className={`nav-item mx-5 d-${props.login}`}>
-                <Link className={`nav-link ${navt} ${location.pathname === "/Reports" ? "active" : ""}`} aria-current="page" style={{ color: (navt === "nav-link_dark") && (location.pathname === '/Reports' ? "yellow" : "rgb(193, 193, 0)") }} to="/Reports" id="navreports">Reports</Link>
+                <Link className={`nav-link ${navt} ${location.pathname === "/Reports" ? "active fw-bold" : ""}`} aria-current="page" style={{ color: (navt === "nav-link_dark") && (location.pathname === '/Reports' ? "yellow" : "rgb(193, 193, 0)") }} to="/Reports" id="navreports">Reports</Link>
               </li>
               <li className={`nav-item mx-5 d-${props.login}`}>
-                <Link className={`nav-link ${navt} ${location.pathname === "/Requests" ? "active" : ""}`} aria-current="page" style={{ color: (navt === "nav-link_dark") && (location.pathname === '/Requests' ? "yellow" : "rgb(193, 193, 0)") }} to="/Requests" id="navreq">Requests</Link>
+                <Link className={`nav-link ${navt} ${location.pathname === "/Requests" ? "active fw-bold" : ""}`} aria-current="page" style={{ color: (navt === "nav-link_dark") && (location.pathname === '/Requests' ? "yellow" : "rgb(193, 193, 0)") }} to="/Requests" id="navreq">Requests</Link>
               </li>
             </ul>
             <Link onClick={theme} style={{ cursor: "pointer" }}><i className={`${mystyle == "#b4e0ff" ? "bi bi-moon-fill" : "bi bi-sun-fill"} me-3 fs-5 text-black`} style={mystyle == "#b4e0ff" ? null : { filter: "invert(1)" }}></i></Link>

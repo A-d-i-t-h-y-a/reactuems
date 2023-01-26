@@ -1,4 +1,4 @@
-import React from "react";
+import React , { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import "./Schedule.css"
 // import { button } from 'react-router-dom';
@@ -10,6 +10,15 @@ export default function Schedule(props) {
   // let Bookbtn = document.getElementById("Bookbtn");
   let btn_link = document.getElementsByClassName("btn-link");
   let history = useNavigate();
+  let [eventdet, setEventdet] = useState({
+    name: "",
+    description: "",
+    etype: "",
+    venue: "",
+    food: "",
+    quantity: "",
+    mdescription: ""
+  })
 
   const nextstep = () => {
     // formStep.forEach((formstep)=>{
@@ -128,8 +137,9 @@ export default function Schedule(props) {
                     className="form-control col-lg-8"
                     placeholder="Event Name"
                     aria-label="Event name"
-                    name="Event Name"
+                    name="name"
                     aria-describedby="basic-addon1"
+                    value={eventdet.name}
                   />
                 </div>
               </li>
@@ -139,13 +149,14 @@ export default function Schedule(props) {
                   <textarea
                     className="form-control col-8"
                     aria-label="With textarea"
+                    value={eventdet.description}
                   ></textarea>
                 </div>
               </li>
               <li>
                 <div className="row input-group mb-5">
                   <label className="me-5 col-lg-2">Event Type</label>
-                  <select className="form-select col-8" id="Type" name="type">
+                  <select className="form-select col-8" id="Type" name="etype" value={eventdet.etype}>
                     <option defaultValue>Offline</option>
                     <option value="1">Online</option>
                   </select>
