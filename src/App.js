@@ -12,11 +12,8 @@ import Requests from './components/Requests';
 import Footer from './components/Footer';
 import Events from './components/Events';
 import Home from './components/Home';
-<<<<<<< HEAD
-import AboutUs from './components/AboutUs';
-=======
 import Alert from './components/Alert';
->>>>>>> UEMSbackend
+import AboutUs from './components/AboutUs';
 
 function App() {  
   const [mode, setMode] = useState("light");
