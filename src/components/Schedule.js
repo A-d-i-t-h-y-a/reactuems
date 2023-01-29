@@ -1,4 +1,4 @@
-import React , { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import "./Schedule.css"
 // import { button } from 'react-router-dom';
@@ -10,13 +10,17 @@ export default function Schedule(props) {
   // let Bookbtn = document.getElementById("Bookbtn");
   let btn_link = document.getElementsByClassName("btn-link");
   let history = useNavigate();
+  let date = new Date();
+  date = `${date.getFullYear()}-0${date.getMonth() + 1}-${date.getDate() + 1}`
   let [eventdet, setEventdet] = useState({
     name: "",
     description: "",
-    etype: "",
-    venue: "",
+    etype: "Offline",
+    edate: date,
+    etime: "",
+    venue: "Auditorium",
     food: "",
-    quantity: "",
+    quantity: "0",
     mdescription: ""
   })
 
@@ -91,11 +95,29 @@ export default function Schedule(props) {
     }
   };
 
-  const handleOnSubmit = (e)=>{
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
-    
+    const response = await fetch("http://localhost:5000/api/event/newevent", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("token")
+      },
+      body: JSON.stringify(eventdet)
+    })
+    // console.log(eventdet)
     history("/Schedule")
     props.showAlert("Request sent", "success")
+  }
+  const handleOnChange = (e) => {
+    let arr = [];
+    let checkboxes = document.querySelectorAll("input[type='checkbox']:checked");
+
+    checkboxes.forEach((item) => {
+      arr.push(item.id)
+    })
+    // setEventdet({food: arr})
+    setEventdet({ ...eventdet, [e.target.name]: e.target.value })
   }
   return (
     <>
@@ -104,7 +126,7 @@ export default function Schedule(props) {
         className="container-fluid-lg d-flex flex-column flex-sm-row"
         style={{ minHeight: "100%" }}
       >
-        <div className="my-sm-5 ms-lg-5 shadow bg-body rounded py-3 lnav" style={{minHeight: "90%"}}>
+        <div className="my-sm-5 ms-lg-5 shadow bg-body rounded py-3 lnav" style={{ minHeight: "90%" }}>
           <div className="d-flex flex-row flex-sm-column justify-content-evenly mx-lg-5 h-100">
             <button
               className="btn btn-link text-decoration-none text-black navact book"
@@ -126,7 +148,7 @@ export default function Schedule(props) {
             </button>
           </div>
         </div>
-        <form className="Book container w-sm-75 ms-sm-5 me-sm-5 my-5 shadow bg-body rounded d-flex" style={{minHeight: "90%"}} onSubmit={handleOnSubmit}>
+        <form className="Book container w-sm-75 ms-sm-5 me-sm-5 my-5 shadow bg-body rounded d-flex" style={{ minHeight: "90%" }} onSubmit={handleOnSubmit}>
           <div id="book" className="step act" style={{ overflow: "auto" }}>
             <ul>
               <li>
@@ -140,6 +162,7 @@ export default function Schedule(props) {
                     name="name"
                     aria-describedby="basic-addon1"
                     value={eventdet.name}
+                    onChange={handleOnChange}
                   />
                 </div>
               </li>
@@ -150,32 +173,34 @@ export default function Schedule(props) {
                     className="form-control col-8"
                     aria-label="With textarea"
                     value={eventdet.description}
+                    onChange={handleOnChange}
+                    name="description"
                   ></textarea>
                 </div>
               </li>
               <li>
                 <div className="row input-group mb-5">
                   <label className="me-5 col-lg-2">Event Type</label>
-                  <select className="form-select col-8" id="Type" name="etype" value={eventdet.etype}>
+                  <select className="form-select col-8" id="Type" name="etype" value={eventdet.etype} onChange={handleOnChange}>
                     <option defaultValue>Offline</option>
-                    <option value="1">Online</option>
+                    <option>Online</option>
                   </select>
                 </div>
               </li>
               <li className="mb-5">
                 <div className="row input-group mb-5">
                   <span className="me-5 col-lg-2">Date</span>
-                  <input type="date" className="form-control" name="date" />
+                  <input type="date" className="form-control" name="edate" value={eventdet.edate} onChange={handleOnChange} min={date} />
                   <span className="me-5 col-lg-2">Time</span>
-                  <input type="time" className="form-control" name="time" />
+                  <input type="time" className="form-control" name="etime" value={eventdet.etime} onChange={handleOnChange} />
                 </div>
               </li>
               <li>
                 <div className="row input-group mb-5">
                   <label className="me-5 col-lg-2">Venue</label>
-                  <select className="form-select col-8" id="Venue" name="venue">
+                  <select className="form-select col-8" id="Venue" name="venue" value={eventdet.venue} onChange={handleOnChange}>
                     <option defaultValue>Auditorium</option>
-                    <option value="1">Mini Auditorium</option>
+                    <option>Mini Auditorium</option>
                   </select>
                 </div>
               </li>
@@ -212,7 +237,7 @@ export default function Schedule(props) {
                   <div className="row my-lg-4 justify-content-evenly">
                     <div className="col-lg-3 form-check">
                       <input
-                        className="form-check-input"
+                        className="form-check-input food"
                         type="checkbox"
                         value=""
                         id="Samosa"
@@ -224,7 +249,7 @@ export default function Schedule(props) {
                     </div>
                     <div className="col-lg-3 form-check">
                       <input
-                        className="form-check-input"
+                        className="form-check-input food"
                         type="checkbox"
                         value=""
                         id="Frooti"
@@ -236,7 +261,7 @@ export default function Schedule(props) {
                     </div>
                     <div className="col-lg-3 form-check">
                       <input
-                        className="form-check-input"
+                        className="form-check-input food"
                         type="checkbox"
                         value=""
                         id="FiveStar"
@@ -250,7 +275,7 @@ export default function Schedule(props) {
                   <div className="row my-lg-4 justify-content-evenly">
                     <div className="col-lg-3 form-check">
                       <input
-                        className="form-check-input"
+                        className="form-check-input food"
                         type="checkbox"
                         value=""
                         id="Chips"
@@ -262,7 +287,7 @@ export default function Schedule(props) {
                     </div>
                     <div className="col-lg-3 form-check">
                       <input
-                        className="form-check-input"
+                        className="form-check-input food"
                         type="checkbox"
                         value=""
                         id="CurryPuff"
@@ -274,7 +299,7 @@ export default function Schedule(props) {
                     </div>
                     <div className="col-lg-3 form-check">
                       <input
-                        className="form-check-input"
+                        className="form-check-input food"
                         type="checkbox"
                         value=""
                         id="Sprite"
@@ -296,6 +321,10 @@ export default function Schedule(props) {
                     placeholder="Quantity"
                     aria-label="Quantity"
                     aria-describedby="basic-addon1"
+                    min="0"
+                    value={eventdet.quantity}
+                    name="quantity"
+                    onChange={handleOnChange}
                   />
                 </div>
               </li>
@@ -305,6 +334,9 @@ export default function Schedule(props) {
                   <textarea
                     className="form-control col-8"
                     aria-label="With textarea"
+                    value={eventdet.mdescription}
+                    name="mdescription"
+                    onChange={handleOnChange}
                   ></textarea>
                 </div>
               </li>
@@ -345,26 +377,24 @@ export default function Schedule(props) {
                   <tr>
                     <th scope="row">1</th>
                     <td>Event Name</td>
-                    <td>Event 1</td>
+                    <td>{eventdet.name}</td>
                   </tr>
                   <tr>
                     <th scope="row">2</th>
                     <td>Event Description</td>
                     <td>
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Sed, nisi fuga repellat iure tenetur modi natus eum! Nobis
-                      magni esse in veniam laudantium aperiam libero.
+                    {eventdet.description}
                     </td>
                   </tr>
                   <tr>
                     <th scope="row">3</th>
                     <td>Event Type</td>
-                    <td>Offline</td>
+                    <td>{eventdet.etype}</td>
                   </tr>
                   <tr>
                     <th scope="row">4</th>
                     <td>Date&Time</td>
-                    <td>1-1-2022, 12:00PM</td>
+                    <td>{eventdet.edate+" "+eventdet.etime}</td>
                   </tr>
                 </tbody>
               </table>

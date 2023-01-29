@@ -1,18 +1,19 @@
 import React from 'react'
 
 export default function Event(props) {
+    let event = props.event.replace(" ", "_")
     return (
         <>
             <div className="card text-center mx-1 mb-3 d-inline-block" style={{ width: "35rem" }}>
                 <div className="card-body">
                     <h5 className="card-title">{props.event}</h5>
                     <p className="card-text">
-                        {props.description.slice(0, 350)}...
-                        <button className="btn btn-link p-0" type="button" data-bs-toggle="modal" data-bs-target={`#${props.event}`}>
+                        {(props.description.length>350)?`${props.description.slice(0, 350)}...`:`${props.description}`}
+                        {(props.description.length>350)?<button className="btn btn-link p-0" type="button" data-bs-toggle="modal" data-bs-target={`#${event}`}>
                             Show More
-                        </button>
+                        </button>:""}
                     </p>
-                    <div className="modal fade" id={props.event} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal fade" id={event} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                             <div className="modal-content">
                                 <div className="modal-header">

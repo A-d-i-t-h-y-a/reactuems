@@ -6,9 +6,9 @@ const router = express.Router()
 // ROUTE 1: new event Data
 router.post('/newevent',fetchuser, async (req, res)=>{
     try {
-        const {name, description, etype, date_time, venue, food, quantity, mdescription} = req.body;
+        const {name, description, etype, edate, etime, venue, food, quantity, mdescription} = req.body;
         const event = new Events({
-            name, description, etype, date_time, venue, food, quantity, mdescription
+            name, description, etype, edate, etime, venue, food, quantity, mdescription
         })
         const savedData = await event.save();
         res.json(savedData)

@@ -15,16 +15,20 @@ const eventSchema = new Schema({
         type:String,
         required: true
     },
-    date_time:{
-        type: Date,
-        default: Date.now
+    edate:{
+        type: String,
+        required: true
+    },
+    etime:{
+        type: String,
+        required: true
     },
     venue:{
         type:String,
         required: true
     },
     food:{
-        type:String,
+        type:Array,
         required: true
     },
     quantity:{
