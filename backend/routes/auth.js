@@ -1,4 +1,4 @@
-// const dotenv = require('dotenv')
+const dotenv = require('dotenv')
 const express = require('express')
 const User = require("../models/User")
 const router = express.Router()
@@ -6,10 +6,8 @@ const bcrypt = require("bcryptjs")
 const jwt = require('jsonwebtoken')
 const fetchuser = require('../middleware/fetchuser')
 
-// dotenv.config({ path : './config.env'})
-// const JWT_SECRET = process.env.JWT_SECRET
-const JWT_SECRET = "thisisUEMSProject"
-
+dotenv.config()
+const JWT_SECRET = `${process.env.JWT_SECRET}`
 // Route 1: Creating an User
 
 router.post('/create', async(req, res)=>{

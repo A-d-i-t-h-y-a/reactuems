@@ -116,7 +116,7 @@ export default function Schedule(props) {
     checkboxes.forEach((item) => {
       arr.push(item.id)
     })
-    // setEventdet({food: arr})
+
     setEventdet({ ...eventdet, [e.target.name]: e.target.value })
   }
   return (

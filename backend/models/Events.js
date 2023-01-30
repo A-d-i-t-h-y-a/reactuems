@@ -28,7 +28,7 @@ const eventSchema = new Schema({
         required: true
     },
     food:{
-        type:Array,
+        type:String,
         required: true
     },
     quantity:{
