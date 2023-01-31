@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import "./Schedule.css"
-// import { button } from 'react-router-dom';
 
 export default function Schedule(props) {
   // let nextBtn = document.querySelectorAll(".btn-next");
@@ -11,7 +9,8 @@ export default function Schedule(props) {
   let btn_link = document.getElementsByClassName("btn-link");
   let history = useNavigate();
   let date = new Date();
-  date = `${date.getFullYear()}-0${date.getMonth() + 1}-${date.getDate() + 1}`
+  date.setDate(date.getDate() + 1)
+  date = `${date.getFullYear()}-0${date.getMonth() + 1}-0${date.getDate()}`
   let [eventdet, setEventdet] = useState({
     name: "",
     description: "",
@@ -19,7 +18,7 @@ export default function Schedule(props) {
     edate: date,
     etime: "",
     venue: "Auditorium",
-    food: "",
+    food: "no input",
     quantity: "0",
     mdescription: ""
   })
@@ -105,7 +104,6 @@ export default function Schedule(props) {
       },
       body: JSON.stringify(eventdet)
     })
-    // console.log(eventdet)
     history("/Schedule")
     props.showAlert("Request sent", "success")
   }

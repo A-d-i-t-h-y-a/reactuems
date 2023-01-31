@@ -4,7 +4,8 @@ const connectToMongo = require('./db')
 const cors = require('cors')
 const dotenv = require('dotenv')
 dotenv.config()
-const port = process.env.PORT;
+const PORT = `${process.env.BACKEND_PORT}`;
+// const port = 5000
 
 connectToMongo();
 app.use(cors())
@@ -17,6 +18,6 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.listen(port, () => {
-    console.log(`Example app listening on port http://localhost:${port}`)
+app.listen(PORT, () => {
+    console.log(`Example app listening on port http://localhost:${PORT}`)
 })

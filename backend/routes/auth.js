@@ -4,13 +4,23 @@ const User = require("../models/User")
 const router = express.Router()
 const bcrypt = require("bcryptjs")
 const jwt = require('jsonwebtoken')
+const {body, validationResult} = require('express-validator')
 const fetchuser = require('../middleware/fetchuser')
 
 dotenv.config()
 const JWT_SECRET = `${process.env.JWT_SECRET}`
 // Route 1: Creating an User
 
-router.post('/create', async(req, res)=>{
+router.post('/create',[
+    body('username').isLength({ min : 5 }),
+    body('password').isLength({ min : 5 })
+], async(req, res)=>{
+    const errors = validationResult(req)
+    if(!errors.isEmpty()){
+        // res.status(400).json({ errors : errors.array() })
+        res.status(400).json({ error : "Enter Valid Input" })
+        return;
+    }
     try {
         let user = await User.findOne({username: req.body.username});
         if(user){
@@ -37,8 +47,17 @@ router.post('/create', async(req, res)=>{
 })
 
 // Route 2 : login user
-router.post('/login', async (req, res)=>{
+router.post('/login',[
+    body('username').isLength({ min : 5 }),
+    body('password').isLength({ min : 5 })
+], async (req, res)=>{
     const {username, password} = req.body
+    const errors = validationResult(req)
+    if(!errors.isEmpty()){
+        // res.status(400).json({ errors : errors.array() })
+        res.status(400).json({ error : "Enter Valid Input" })
+        return;
+    }
     try {
         let success = false;
         let user = await User.findOne({username})
