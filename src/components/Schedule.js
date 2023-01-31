@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Schedule(props) {
-  // let nextBtn = document.querySelectorAll(".btn-next");
-  // let prevBtn = document.querySelectorAll(".btn-prev");
   let formStep = document.getElementsByClassName("step");
-  // let Bookbtn = document.getElementById("Bookbtn");
   let btn_link = document.getElementsByClassName("btn-link");
   let history = useNavigate();
   let date = new Date();
@@ -24,11 +21,6 @@ export default function Schedule(props) {
   })
 
   const nextstep = () => {
-    // formStep.forEach((formstep)=>{
-    //   formstep.classList.contains("act")&&
-    //   formstep.classList.remove("act")
-    // })
-    // formStep[temp].classList.add("act");
     let a = 0;
     for (a = 0; a < 3; a++) {
       if (formStep[a].classList.contains("act")) {
@@ -43,11 +35,6 @@ export default function Schedule(props) {
   };
 
   const prevstep = () => {
-    // formStep.forEach((formstep)=>{
-    //   formstep.classList.contains("act")&&
-    //   formstep.classList.remove("act")
-    // })
-    // formStep[temp].classList.add("act");
     let a = 0;
     for (a = 0; a < 3; a++) {
       if (formStep[a].classList.contains("act")) {
@@ -88,8 +75,6 @@ export default function Schedule(props) {
   const checkfunc = () => {
     let check = document.getElementsByClassName("form-check-input");
     for (let i of check) {
-      // let attr = document.createAttribute("checked");
-      // console.log(i)
       i.setAttribute("checked", "");
     }
   };

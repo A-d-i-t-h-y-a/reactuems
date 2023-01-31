@@ -17,7 +17,6 @@ router.post('/create',[
 ], async(req, res)=>{
     const errors = validationResult(req)
     if(!errors.isEmpty()){
-        // res.status(400).json({ errors : errors.array() })
         res.status(400).json({ error : "Enter Valid Input" })
         return;
     }
@@ -54,7 +53,6 @@ router.post('/login',[
     const {username, password} = req.body
     const errors = validationResult(req)
     if(!errors.isEmpty()){
-        // res.status(400).json({ errors : errors.array() })
         res.status(400).json({ error : "Enter Valid Input" })
         return;
     }

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
-import PropTypes from 'prop-types'
 import '../index.css';
-import { Link, useLocation , useNavigate} from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export default function Navbar(props) {
   const [pass, setpass] = useState("password");
@@ -15,9 +14,6 @@ export default function Navbar(props) {
   useEffect(() => {
 
   }, [location])
-  // const [text, settext] = useState()
-  // let Pass = document.getElementById("Pass");
-  // let tog = isNaN(Pass.value);
   const ptoggle = () => {
     if (pass === "password") {
       setpass("text");
@@ -51,14 +47,14 @@ export default function Navbar(props) {
     }
     setCred({ ...cred, [e.target.name]: e.target.value })
   }
-  useEffect(()=>{
-    if(localStorage.getItem("token")){
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
       props.loggedin("block")
     }
-    else{
+    else {
       props.loggedin("none")
     }
-  },[])
+  }, [])
 
   let history = useNavigate()
   const handleOnSubmit = async (e) => {
@@ -68,32 +64,29 @@ export default function Navbar(props) {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({username: cred.username, password: cred.password})
+      body: JSON.stringify({ username: cred.username, password: cred.password })
     })
     const json = await response.json()
-    // console.log(json)
-    if(json.success){
+    if (json.success) {
       ref.current.click()
-      // history("/Schedule")
       props.showAlert("Logged In Successfully", "success")
       props.loggedin("block")
       localStorage.setItem("token", json.authToken)
       setCred({ username: "", password: "" })
     }
-    else{
+    else {
       props.showAlert("Enter Valid Credentials", "danger")
       ref.current.click()
     }
   }
 
-  const handleLogout = ()=>{
+  const handleLogout = () => {
     localStorage.removeItem("token")
     props.loggedin("none")
     history("/")
   }
   return (
     <>
-      {/* <nav className="navbar navbar-expand-lg shadow rounded mb-2" style={{backgroundColor: "#b4e0ff"}}> */}
       <nav className="navbar navbar-expand-lg shadow mb-2" style={{ backgroundColor: mystyle }}>
         <div className="container-fluid">
           <Link className="navbar-brand" to="/"><img src="./kmit-bar.png" alt='Unable To Load' style={{ width: "3.5rem" }} /></Link>
@@ -102,7 +95,7 @@ export default function Navbar(props) {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav m-auto mb-2 mb-lg-0">
+            {(localStorage.getItem('token')) ? <ul className="navbar-nav m-auto mb-2 mb-lg-0">
               <li className="nav-item mx-5">
                 <Link className={`nav-link ${navt} ${location.pathname === "/" ? "active fw-bold" : ""}`} aria-current="page" style={{ color: (navt === "nav-link_dark") && (location.pathname === '/' ? "yellow" : "rgb(193, 193, 0)") }} to="/" id="navhome">Home</Link>
               </li>
@@ -118,9 +111,16 @@ export default function Navbar(props) {
               <li className={`nav-item mx-5 d-${props.login}`}>
                 <Link className={`nav-link ${navt} ${location.pathname === "/Requests" ? "active fw-bold" : ""}`} aria-current="page" style={{ color: (navt === "nav-link_dark") && (location.pathname === '/Requests' ? "yellow" : "rgb(193, 193, 0)") }} to="/Requests" id="navreq">Requests</Link>
               </li>
-            </ul>
+            </ul> : <ul className="navbar-nav m-auto mb-2 mb-lg-0">
+              <li className="nav-item mx-5">
+                <Link className={`nav-link ${navt} ${location.pathname === "/" ? "active fw-bold" : ""}`} aria-current="page" style={{ color: (navt === "nav-link_dark") && (location.pathname === '/' ? "yellow" : "rgb(193, 193, 0)") }} to="/" id="navhome">Home</Link>
+              </li>
+              <li className="nav-item mx-5">
+                <Link className={`nav-link ${navt} ${location.pathname === "/events" ? "active fw-bold" : ""}`} aria-current="page" style={{ color: (navt === "nav-link_dark") && (location.pathname === '/events' ? "yellow" : "rgb(193, 193, 0)") }} to="/events" id="navevents">Events</Link>
+              </li>
+            </ul>}
             <Link onClick={theme} style={{ cursor: "pointer" }}><i className={`${mystyle == "#b4e0ff" ? "bi bi-moon-fill" : "bi bi-sun-fill"} me-3 fs-5 text-black`} style={mystyle == "#b4e0ff" ? null : { filter: "invert(1)" }}></i></Link>
-            {localStorage.getItem("token")?<button className={`btn btn-outline-${mystyle == "#b4e0ff" ? "danger" : "light"} px-4`} onClick={handleLogout}>Logout</button>:<button className={`btn btn-outline-${mystyle == "#b4e0ff" ? "success" : "light"} px-5`} type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            {localStorage.getItem("token") ? <button className={`btn btn-outline-${mystyle == "#b4e0ff" ? "danger" : "light"} px-4`} onClick={handleLogout}>Logout</button> : <button className={`btn btn-outline-${mystyle == "#b4e0ff" ? "success" : "light"} px-5`} type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
               Login
             </button>}
             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -150,11 +150,4 @@ export default function Navbar(props) {
       </nav>
     </>
   )
-}
-
-Navbar.propTypes = { title: PropTypes.string.isRequired, about: PropTypes.string.isRequired }
-
-Navbar.defaultProps = {
-  title: "TextUtils",
-  about: "About"
 }

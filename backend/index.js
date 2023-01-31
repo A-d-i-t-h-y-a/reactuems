@@ -5,7 +5,6 @@ const cors = require('cors')
 const dotenv = require('dotenv')
 dotenv.config()
 const PORT = `${process.env.BACKEND_PORT}`;
-// const port = 5000
 
 connectToMongo();
 app.use(cors())
