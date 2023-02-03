@@ -19,7 +19,7 @@ router.post('/newevent',fetchuser, async (req, res)=>{
 })
 
 // ROUTE 2: fetch events
-router.get('/events', fetchuser, async (req, res)=>{
+router.post('/events', fetchuser, async (req, res)=>{
     try {
         const events = await Events.find({ user: req.user.id });
         res.json(events);
