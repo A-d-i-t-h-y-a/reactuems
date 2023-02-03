@@ -1,8 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useContext} from 'react'
 import '../index.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import eventsContext from '../context/events'
 
 export default function Navbar(props) {
+  const context = useContext(eventsContext);
+  const {getEvents, events} = context;
+  console.log(events);
   const [pass, setpass] = useState("password");
   const [bi, setbi] = useState("bi-eye");
   const [mystyle, setstyle] = useState("#b4e0ff")
@@ -49,6 +53,7 @@ export default function Navbar(props) {
   }
   useEffect(() => {
     if (localStorage.getItem("token")) {
+      getEvents();
       props.loggedin("block")
     }
     else {

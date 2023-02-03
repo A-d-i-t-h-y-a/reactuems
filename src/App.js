@@ -14,6 +14,7 @@ import Events from './components/Events';
 import Home from './components/Home';
 import Alert from './components/Alert';
 import AboutUs from './components/AboutUs';
+import EventState from './context/EventState';
 
 function App() {  
   const [mode, setMode] = useState("light");
@@ -49,25 +50,27 @@ function App() {
   }
   return (
     <>
-    <Router>
-      <Navbar mode={mode} toggleMode={toggleMode} showAlert={showAlert} loggedin = {loggedin} login={login}/>
-      <div className='container my-3'>
-      <Alert alert={alert}/>
-      {(localStorage.getItem('token'))?
-        <Routes>
-          <Route exact path="/" element={<Home/>}></Route>
-          <Route exact path="/events" element={<Events/>}></Route>
-          <Route exact path="/Schedule" element={<Schedule showAlert={showAlert}/>}></Route>
-          <Route exact path="/Reports" element={<Reports/>}></Route>
-          <Route exact path="/Requests" element={<Requests/>}></Route>
-          <Route exact path="/about" element={<AboutUs/>}></Route>
-        </Routes>:<Routes>
-          <Route exact path="/" element={<Home/>}></Route>
-          <Route exact path="/events" element={<Events/>}></Route>
-        </Routes>}
-        <Footer/>
-      </div>
-    </Router>
+    <EventState>
+      <Router>
+        <Navbar mode={mode} toggleMode={toggleMode} showAlert={showAlert} loggedin = {loggedin} login={login}/>
+        <div className='container my-3'>
+        <Alert alert={alert}/>
+        {(localStorage.getItem('token'))?
+          <Routes>
+            <Route exact path="/" element={<Home/>}></Route>
+            <Route exact path="/events" element={<Events/>}></Route>
+            <Route exact path="/Schedule" element={<Schedule showAlert={showAlert}/>}></Route>
+            <Route exact path="/Reports" element={<Reports/>}></Route>
+            <Route exact path="/Requests" element={<Requests/>}></Route>
+            <Route exact path="/about" element={<AboutUs/>}></Route>
+          </Routes>:<Routes>
+            <Route exact path="/" element={<Home/>}></Route>
+            <Route exact path="/events" element={<Events/>}></Route>
+          </Routes>}
+          <Footer/>
+        </div>
+      </Router>
+    </EventState>
     </>
   );
 }
