@@ -1,6 +1,14 @@
-import React from 'react'
-
+import React, { useContext , useEffect } from 'react'
+import eventsContext from '../context/events'
 export default function Reports() {
+    const context = useContext(eventsContext);
+    const {getEvents,events} = context;
+    useEffect(()=>{
+        if(localStorage.getItem('token')){
+            getEvents();
+        }
+    },[])
+    let i = 0;
     return (
         <>
             <div className="container mt-2">
@@ -36,7 +44,7 @@ export default function Reports() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        {/* <tr>
                             <th scope="row">1</th>
                             <td>Event 1</td>
                             <td>-</td>
@@ -53,7 +61,13 @@ export default function Reports() {
                             <td>Event 3</td>
                             <td>-</td>
                             <td>-</td>
-                        </tr>
+                        </tr> */}
+                        {
+                            events.map((event)=>{
+                                i+=1;
+                                return <tr key={event._id}><th>{i}</th><td>{event.name}</td><td>{event.description}</td><td>-</td></tr>
+                            })
+                        }
                     </tbody>
                 </table>
             </div>

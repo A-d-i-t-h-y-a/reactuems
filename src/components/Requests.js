@@ -4,7 +4,7 @@ import eventsContext from '../context/events';
 
 export default function Requests() {
     const context = useContext(eventsContext);
-    const {getEvents, events} = context;
+    const {getEvents,events} = context;
     let cards = document.getElementsByClassName("cards");
     let accept = 0
     let decline = 0
@@ -22,7 +22,6 @@ export default function Requests() {
             }
         }
     }
-
     useEffect(()=>{
         if(localStorage.getItem('token')){
             getEvents();
