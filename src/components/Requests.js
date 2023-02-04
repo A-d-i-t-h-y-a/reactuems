@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import Event from './Event';
+import eventsContext from '../context/events';
 
 export default function Requests() {
+    const context = useContext(eventsContext);
+    const {getEvents, events} = context;
     let cards = document.getElementsByClassName("cards");
     let accept = 0
     let decline = 0
-    const pend = 0
+    const pend = events.length
     const reqsts = (e) => {
         for (let card of cards) {
             if (card.id === e && card.classList.contains("act")) {
@@ -19,6 +22,12 @@ export default function Requests() {
             }
         }
     }
+
+    useEffect(()=>{
+        if(localStorage.getItem('token')){
+            getEvents();
+        }
+    },[])
     return (
         <>
             <div className="container">
@@ -33,7 +42,7 @@ export default function Requests() {
                     <label className="btn btn-outline-danger" htmlFor="btnradio3" onClick={() => reqsts('Declined')}>Declined <span className='badge rounded-pill text-bg-secondary'>{decline}</span></label>
                 </div>
                 <div className="cards p-5 mt-3 w-100 shadow bg-body rounded overflow-auto act" id="Pending" style={{ maxHeight: "40rem" }}>
-                    <div className="row justify-content-evenly">
+                    {/* <div className="row justify-content-evenly">
                         <div className="col-6 card text-center mx-1 mb-3" style={{ width: "35rem" }}>
                             <div className="card-body">
                                 <h5 className="card-title">Event 1</h5>
@@ -446,6 +455,13 @@ export default function Requests() {
                                 <a href="/" className="btn btn-lg btn-danger">Reject</a>
                             </div>
                         </div>
+                    </div> */}
+                    <div className="d-flex flex-wrap justify-content-between">
+                        {
+                            events.map((event)=>{
+                                return <Event key = {event._id} event = {event.name} description = {event.description}/>
+                            })
+                        }
                     </div>
                 </div>
                 <div className="cards p-5 mt-3 w-100 shadow bg-body rounded overflow-auto" id="Accepted" style={{ maxHeight: "40rem" }}>

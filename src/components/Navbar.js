@@ -5,8 +5,7 @@ import eventsContext from '../context/events'
 
 export default function Navbar(props) {
   const context = useContext(eventsContext);
-  const {getEvents, events} = context;
-  console.log(events);
+  const {getEvents} = context;
   const [pass, setpass] = useState("password");
   const [bi, setbi] = useState("bi-eye");
   const [mystyle, setstyle] = useState("#b4e0ff")
@@ -15,9 +14,9 @@ export default function Navbar(props) {
   const [cred, setCred] = useState({ username: "", password: "" })
   const ref = useRef(null)
   let location = useLocation();
-  useEffect(() => {
+  // useEffect(() => {
 
-  }, [location])
+  // }, [location])
   const ptoggle = () => {
     if (pass === "password") {
       setpass("text");
@@ -53,7 +52,6 @@ export default function Navbar(props) {
   }
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      getEvents();
       props.loggedin("block")
     }
     else {
