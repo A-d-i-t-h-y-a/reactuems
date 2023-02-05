@@ -17,7 +17,8 @@ export default function Schedule(props) {
     venue: "Auditorium",
     food: "no input",
     quantity: "0",
-    mdescription: ""
+    mdescription: "",
+    status: "pending"
   })
 
   const nextstep = () => {

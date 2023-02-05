@@ -36,7 +36,6 @@ router.post('/create',[
                 id:user.id
             }
         }
-
         const authToken = jwt.sign(data, JWT_SECRET);
         res.json({authToken: authToken})
     } catch (error) {

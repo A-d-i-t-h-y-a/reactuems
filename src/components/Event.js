@@ -32,8 +32,11 @@ export default function Event(props) {
                             </div>
                         </div>
                     </div>
-                    <a href="#" className="btn btn-lg btn-success me-sm-5 me-1 my-1">Accept</a>
-                    <a href="#" className="btn btn-lg btn-danger">Reject</a>
+
+                    {(props.status === "pending")&&<div className="d-flex justify-content-evenly mb-0">
+                        <a href="#" className="btn btn-lg btn-success me-sm-5 me-1 my-1" onClick={()=>props.handleAccept(props.id.toString())}>Accept</a>
+                        <a href="#" className="btn btn-lg btn-danger" onClick={()=>props.handleDecline(props.id.toString())}>Decline</a>
+                    </div>}
                 </div>
             </div>
         </>
