@@ -1,4 +1,4 @@
-import React, { useContext , useEffect } from 'react'
+import React, { useContext , useEffect, useState } from 'react'
 import eventsContext from '../context/events'
 export default function Reports() {
     const context = useContext(eventsContext);
@@ -8,6 +8,18 @@ export default function Reports() {
             getEvents();
         }
     },[])
+    const [filter, setFilter] = useState({ todate:"" , fromdate:"" , etype:"" , venue:"" })
+    const handleonChange = (e)=>{
+        setFilter({...filter, [e.target.name]:e.target.value})
+    }
+
+    const filtertable = ()=>{
+        const table = document.getElementsByClassName('tbody')
+    }
+
+    useEffect(()=>{
+        filtertable()
+    }, [filter])
     let i = 0;
     return (
         <>
@@ -16,24 +28,26 @@ export default function Reports() {
                 <div id="filter" className="collapse">
                     <div className="row input-group mb-3 mx-0">
                         <span className="col-lg-1 input-group-text">From Date</span>
-                        <input type="date" className="col-lg-5 form-control" name="date" />
+                        <input type="date" className="col-lg-5 form-control" name="fromdate" value = {filter.fromdate} onChange = {handleonChange}/>
                         <span className="input-group-text col-lg-1">To Date</span>
-                        <input type="date" className="col-lg-5 form-control" name="date" />
+                        <input type="date" className="col-lg-5 form-control" name="todate" value = {filter.todate} onChange = {handleonChange}/>
                     </div>
                     <div className="row input-group my-4 mx-0">
                         <span className="col-lg-1 input-group-text">Event Type</span>
-                        <select className="form-select col-lg-5 me-sm-2" id="inputGroupSelect01" name="type">
-                            <option selected>Offline</option>
-                            <option value="1">Online</option>
+                        <select className="form-select col-lg-5 me-sm-2" id="inputGroupSelect01" name="etype" value={filter.etype} onChange={handleonChange}>
+                            <option selected value="">None</option>
+                            <option>Offline</option>
+                            <option>Online</option>
                         </select>
                         <span className="col-lg-1 input-group-text">Venue</span>
-                        <select className="form-select col-lg-5" id="inputGroupSelect01" name="venue">
-                            <option selected>Auditorium</option>
-                            <option value="1">Mini Auditorium</option>
+                        <select className="form-select col-lg-5" id="inputGroupSelect02" name="venue" value={filter.venue} onChange={handleonChange}>
+                            <option selected value="">None</option>
+                            <option>Auditorium</option>
+                            <option>Mini Auditorium</option>
                         </select>
                     </div>
                 </div>
-                <h2>Results</h2>
+                <h2>Reports</h2>
                 <table className="table table-hover">
                     <thead>
                         <tr>
@@ -44,28 +58,10 @@ export default function Reports() {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* <tr>
-                            <th scope="row">1</th>
-                            <td>Event 1</td>
-                            <td>-</td>
-                            <td>-</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Event 2</td>
-                            <td>-</td>
-                            <td>-</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Event 3</td>
-                            <td>-</td>
-                            <td>-</td>
-                        </tr> */}
                         {
                             events.map((event)=>{
                                 i+=1;
-                                return <tr key={event._id}><th>{i}</th><td>{event.name}</td><td>{event.description}</td><td>-</td></tr>
+                                return <tr key={event._id} className="tbody"><th>{i}</th><td>{event.name}</td><td>{event.description}</td><td>-</td></tr>
                             })
                         }
                     </tbody>
