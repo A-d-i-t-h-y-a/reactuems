@@ -5,7 +5,7 @@ const EventState = (props)=>{
     const [events, setEvents] = useState([])
 
     const getEvents = async ()=>{
-        const response = await fetch(`http://localhost:5000/api/event/events`, {
+        const response = await fetch(`https://uemsapi.onrender.com/api/event/events`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -18,7 +18,7 @@ const EventState = (props)=>{
     }
 
     const updateStatus = async (eventid, status)=>{
-        const response = await fetch(`http://localhost:5000/api/event/update/${eventid}`, {
+        const response = await fetch(`https://uemsapi.onrender.com/api/event/update/${eventid}`, {
             method : "PUT",
             headers: {
                 'Content-Type': 'application/json',
