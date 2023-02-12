@@ -82,7 +82,7 @@ export default function Schedule(props) {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/api/event/newevent", {
+    const response = await fetch("https://uemsapi.onrender.com/api/event/newevent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
