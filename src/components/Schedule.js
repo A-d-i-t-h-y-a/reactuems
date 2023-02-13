@@ -7,7 +7,7 @@ export default function Schedule(props) {
   let history = useNavigate();
   let date = new Date();
   date.setDate(date.getDate() + 1)
-  date = `${date.getFullYear()}-0${date.getMonth() + 1}-0${date.getDate()}`
+  date = `${date.getFullYear()}-${(date.getMonth()>10?'':'0')}${date.getMonth() + 1}-${(date.getDate()>10?'':'0')}${date.getDate()}`
   let [eventdet, setEventdet] = useState({
     name: "",
     description: "",
