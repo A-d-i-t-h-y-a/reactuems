@@ -48,24 +48,26 @@ export default function Reports() {
                     </div>
                 </div>
                 <h2>Reports</h2>
-                <table className="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">S.No</th>
-                            <th scope="col">Event Name</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            events.map((event)=>{
-                                i+=1;
-                                return <tr key={event._id} className="tbody"><th>{i}</th><td>{event.name}</td><td>{event.description}</td><td>-</td></tr>
-                            })
-                        }
-                    </tbody>
-                </table>
+                <div className='table-responsive'>
+                    <table className="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">S.No</th>
+                                <th scope="col">Event Name</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                events.map((event)=>{
+                                    i+=1;
+                                    return <tr key={event._id} className="tbody"><th>{i}</th><td>{event.name}</td><td>{event.description}</td><td>-</td></tr>
+                                })
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </>
     )
